@@ -1,0 +1,37 @@
+﻿@model NumberSortApp.Models.SortInputModel
+
+<h1>Sort Numbers</h1>
+
+@if (ViewData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewData["ErrorMessage"]
+    </div>
+}
+
+<form method="post">
+    <div class="form-group">
+        <label for="Numbers">Enter numbers (comma-separated):</label>
+        @Html.ValidationMessageFor(model => model.Numbers) 
+        @if (Model != null && Model.Numbers != null)
+        {
+            <input type="text" class="form-control" id="Numbers" name="Numbers" value="@string.Join(",", Model.Numbers)" required>
+        }
+        else
+        {
+            <input type="text" class="form-control" id="Numbers" name="Numbers" required>
+        }
+        <span class="text-muted">Example: 5,3,8,1,9</span>
+    </div>
+    <div class="form-group">
+        <label for="SortingDirection">Sorting Direction:</label>
+        <select class="form-control" id="SortingDirection" name="SortingDirection" required>
+            <option value="">Select Direction</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+        @Html.ValidationMessageFor(model => model.SortingDirection) <!-- Add validation message for SortingDirection field -->
+    </div>
+    <button type="submit" class="btn btn-primary">Sort</button>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" }) <!-- Add validation summary -->
+</form>

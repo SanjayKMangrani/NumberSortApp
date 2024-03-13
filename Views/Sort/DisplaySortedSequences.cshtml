@@ -1,0 +1,32 @@
+﻿@model List<SortNumber>
+
+<h1>Sorted Sequences</h1>
+
+@if (ViewData["Message"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewData["Message"]
+    </div>
+}
+<script src="~/js/export.js"></script>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sorted Numbers</th>
+            <th>Sorting Direction</th>
+            <th>Sorting Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@string.Join(",", item.SortedNumbers)</td>
+                <td>@item.SortingDirection</td>
+                <td>@item.SortingTime</td>
+            </tr>
+        }
+    </tbody>
+</table>
+</br>
+<button id="exportButton" class="btn btn-primary">Export Sorted Sequences</button>
